@@ -1,12 +1,15 @@
 package com.sun.test;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -24,6 +27,9 @@ public class GraphiTuDTest {
 		 f.setVisible(true);
 		 f.add(new MyPanel());
 		 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 f.setBackground(Color.WHITE);
+		 Image icon = new ImageIcon("timg.jpg").getImage();
+		 f.setIconImage(icon);
 	}
 	
 }
@@ -65,7 +71,12 @@ class MyPanel extends JPanel{
 		
 		Line2D line = new Line2D.Float(300f, 10f, 100f, 110f);
 		g2.draw(rect);
-		g2.draw(eli);
+		//颜色可用rgb规则设置
+		g2.setPaint(new Color(255, 250, 250));
+		//颜色填充一个图形
+		g2.fill(eli);
+		//为后续的图形添加颜色，预定义的颜色
+		g2.setPaint(Color.RED);
 		g2.draw(line);
 	}
 	
