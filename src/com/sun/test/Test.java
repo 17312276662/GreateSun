@@ -3,11 +3,13 @@ package com.sun.test;
 import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Test {
 
@@ -37,13 +39,17 @@ public class Test {
 		mainFrame.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		//获取本地窗口系统的相关数据
 		Toolkit kit = Toolkit.getDefaultToolkit();
-		//获取屏幕相关数据
+		//获取屏幕图像相关数据
 		Dimension screenSize = kit.getScreenSize();
 		System.out.println("the screen size is width:"+ screenSize.width + " height : " + screenSize.height);
 		//设置图标
 		Image img = new ImageIcon("timg.jpg").getImage();
 		mainFrame.setIconImage(img);
 		
+		//重新绘制
+		mainFrame.repaint();
+		//添加文本内容，panel可以添加组件
+		mainFrame.add(new HelloPanel());
 		//设置最大化状态
 		mainFrame.setExtendedState(Frame.MAXIMIZED_BOTH);
 		//设置关闭方法，默认的是x号退出并停止程序
@@ -52,4 +58,16 @@ public class Test {
 		//目前未看出用途，且会抛出illegalComponentStateException
 		/*mainFrame.setUndecorated(true);*/
 	}
+}
+class HelloPanel extends JPanel{
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		
+		//文字内容，距左边距离，距上边距离
+		g.drawString("this is the containt of  this panel !", 0, 50);
+	}
+	
+	
+	
 }
